@@ -1,0 +1,36 @@
+<p>Enter argument</p>
+<label>Argument</label>
+<input type="text" id="argument"/>
+<br/>
+
+<button onclick="typeOfArgument();">Submit</button>
+<p id="mypara">The output will be displayed here</p>
+<script>
+    function typeOfArgument() {
+    let argument = document.getElementById("argument").value;
+    let typeOfArgument = "string";
+    
+    try{
+        if (argument === "undefined") {
+            typeOfArgument = "undefined"
+        }
+        else if(argument === "null" || JSON.parse(argument).constructor === Object || JSON.parse(argument).constructor === Array)
+        {
+            typeOfArgument = "object";
+        }
+        else if (!isNaN(parseInt(argument))) {
+            typeOfArgument = "number";
+        }
+        else if(argument === "true" || argument === "false") 
+        {
+            typeOfArgument = "boolean"
+        }
+        document.getElementById("mypara").innerHTML = "type of " + argument + " is " + typeOfArgument;
+    }
+    catch(e)
+    {
+        console.log("exception")
+        document.getElementById("mypara").innerHTML = "type of " + argument + " is " + typeOfArgument;
+    }
+}
+</script>
